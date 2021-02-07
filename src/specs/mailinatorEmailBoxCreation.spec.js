@@ -1,6 +1,7 @@
 const mailinatorMainPage = require ('../pages/MailinatorMainPage');
+const checkBoxCreation = require('../pages/CheckBoxCreation');
 
-const searchValue = 'capitalix';
+const searchValue = 'mailinator';
 
 describe('Mailinator email box creation', function() {
     it('Load mailinator page', function() {
@@ -16,10 +17,13 @@ describe('Mailinator email box creation', function() {
         browser.sleep(5000);
     });
 
-    it('Check than mail box was created', function() {
-
-    // https://www.mailinator.com/v3/index.jsp?zone=public&query=mailinator#/#inboxpane
-    // public inbox: mailinator
-    // update field
+    it('Check that mail box was created', function() {
+        checkBoxCreation.getInboxValue.getText();
+        expect(inboxField.getText()).toEqual("Mailinator");
+        expect(browser.getCurrentUrl()).toEqual("https://www.mailinator.com/v4/public/inboxes.jsp?to=mailinator")
     });
 });
+
+// https://www.mailinator.com/v3/index.jsp?zone=public&query=mailinator#/#inboxpane
+// public inbox: mailinator
+// update field
