@@ -4,7 +4,7 @@ e2e_protractor_homework
 All tests
 
 protractor protractor.conf.js
-
+a
 
 Single test
 protractor protractor.conf.js --specs src/specs/depositCapitalix.spec.js (default url: http://localhost:4200)

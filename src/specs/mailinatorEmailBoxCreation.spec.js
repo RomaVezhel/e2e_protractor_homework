@@ -1,11 +1,13 @@
+const constants = require("../resources/constants")
 const mailinatorMainPage = require ('../pages/MailinatorMainPage');
-const checkBoxCreation = require('../pages/CheckBoxCreation');
+const mailinatorInboxPage = require('../pages/MailinatorInboxPage');
+
 
 const searchValue = 'mailinator';
 
 describe('Mailinator email box creation', function() {
     it('Load mailinator page', function() {
-        browser.sleep(10000);
+        browser.sleep(5000);
         mailinatorMainPage.get();
         expect(browser.getTitle()).toEqual("Mailinator");
     });
@@ -18,11 +20,19 @@ describe('Mailinator email box creation', function() {
     });
 
     it('Check that mail box was created', function() {
-        checkBoxCreation.getInboxValue.getText();
-        expect(inboxField.getText()).toEqual("Mailinator");
-        expect(browser.getCurrentUrl()).toEqual("https://www.mailinator.com/v4/public/inboxes.jsp?to=mailinator")
+       const searchValue = mailinatorInboxPage.getSearchValue();
+        expect(searchValue).toEqual("mailinator");
+
     });
+
+    it('Check URL params',  function() {
+     mailinatorInboxPage.get();
+    expect(constants.url).toContain('to=mailinator');
 });
+});
+
+
+
 
 // https://www.mailinator.com/v3/index.jsp?zone=public&query=mailinator#/#inboxpane
 // public inbox: mailinator
